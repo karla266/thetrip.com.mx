@@ -1,0 +1,343 @@
+﻿<!DOCTYPE html>
+<html lang="es-MX" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Trip Smoke Shop Orizaba | Cristalería Pyrex, Conos y Vaporizadores</title>
+  <meta name="description" content="The Trip Smoke Shop en Orizaba, Veracruz: cristalería pyrex, bongs, conos, vaporizadores y mayoreo B2B. Envíos y entrega en Oriente 27 y Norte 10. Venta +18." />
+  <link rel="canonical" href="https://www.thetrip.com.mx/" />
+  <meta name="robots" content="index, follow" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_MX" />
+  <meta property="og:title" content="The Trip Smoke Shop | Orizaba, Veracruz" />
+  <meta property="og:description" content="Cristalería pyrex, conos, vaporizadores y vitrinas mayoristas en Orizaba. Respaldado por Basecamp 420." />
+  <meta property="og:url" content="https://www.thetrip.com.mx/" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    "name": "The Trip Smoke Shop",
+    "url": "https://www.thetrip.com.mx/",
+    "telephone": "+522727258748",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Oriente 27 y Norte 10",
+      "addressLocality": "Orizaba",
+      "addressRegion": "Veracruz",
+      "addressCountry": "MX"
+    },
+    "parentOrganization": {
+      "@type": "Organization",
+      "name": "Basecamp 420",
+      "url": "https://www.basecamp420.com/"
+    }
+  }
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background-color: #090d16; color: #f8fafc; font-family: system-ui, -apple-system, sans-serif; }
+    .tabular-nums { font-variant-numeric: tabular-nums; }
+  </style>
+</head>
+<body class="antialiased selection:bg-emerald-500 selection:text-slate-950">
+
+  <!-- GATE OBLIGATORIO +18 -->
+  <div id="ageGate" class="fixed inset-0 z-50 bg-[#090d16]/95 backdrop-blur-xl flex items-center justify-center p-4">
+    <div class="max-w-md w-full bg-[#111827] border border-slate-800 rounded-2xl p-8 text-center shadow-2xl">
+      <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-black text-xl mb-4">
+        +18
+      </div>
+      <h2 class="text-2xl font-bold tracking-tight text-white mb-2">Verificación de Mayoría de Edad</h2>
+      <p class="text-sm text-slate-400 leading-relaxed mb-6">
+        El catálogo de <strong class="text-slate-200">The Trip Smoke Shop</strong> contiene artículos para fumar y parafernalia dirigidos exclusivamente a personas mayores de 18 años en México.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3">
+        <button onclick="confirmarEdad()" class="flex-1 h-11 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm transition cursor-pointer">
+          Soy mayor de 18 años
+        </button>
+        <a href="https://www.basecamp420.com/adventure" class="flex-1 h-11 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-sm flex items-center justify-center transition">
+          Salir a Aventura
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CABECERA FLOTANTE -->
+  <header class="sticky top-0 z-40 bg-[#090d16]/85 backdrop-blur-md border-b border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3">
+        <span class="w-9 h-9 rounded-xl bg-emerald-500/15 border border-emerald-500/40 flex items-center justify-center text-emerald-400 font-black text-sm">
+          TT
+        </span>
+        <div>
+          <span class="font-bold text-white tracking-tight block leading-none">THE TRIP</span>
+          <span class="text-[11px] text-emerald-400 font-medium tracking-wider uppercase">Smoke Shop • Orizaba</span>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-6 text-sm text-slate-300">
+        <a href="#catalogo" class="hover:text-emerald-400 transition">Catálogo</a>
+        <a href="#mayoreo" class="hover:text-emerald-400 transition">Mayoreo & Vitrinas</a>
+        <a href="#ubicacion" class="hover:text-emerald-400 transition">Sucursal Orizaba</a>
+        <a href="https://www.basecamp420.com" target="_blank" rel="noopener" class="text-slate-400 hover:text-white transition">Hub Basecamp 420 ↗</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <button onclick="toggleCarrito()" class="relative h-10 px-4 rounded-xl bg-[#111827] hover:bg-slate-800 border border-slate-700 text-sm font-semibold text-white flex items-center gap-2 transition cursor-pointer">
+          <span>Carrito</span>
+          <span id="cartCount" class="px-2 py-0.5 text-xs font-bold rounded-full bg-emerald-500 text-slate-950 tabular-nums">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="relative overflow-hidden border-b border-slate-800/80 bg-gradient-to-b from-[#0f172a] to-[#090d16]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-center">
+      <div class="lg:col-span-7 space-y-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          Inventario Sincronizado • Oriente 27 y Norte 10, Orizaba
+        </div>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.08]">
+          The Trip Smoke Shop: <span class="text-emerald-400">Cristalería Pyrex, Conos y Vaporizadores</span>
+        </h1>
+        <p class="text-base sm:text-lg text-slate-400 max-w-2xl leading-relaxed">
+          Catálogo oficial en las Altas Montañas con precios directos de lista, drops quincenales en preventa y pago protegido a través del checkout unificado de <strong class="text-slate-200">Basecamp 420</strong>.
+        </p>
+        <div class="flex flex-wrap gap-3 pt-2">
+          <a href="#catalogo" class="h-12 px-6 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm flex items-center justify-center transition">
+            Explorar Catálogo
+          </a>
+          <a href="#mayoreo" class="h-12 px-6 rounded-xl bg-[#111827] hover:bg-slate-800 border border-slate-700 text-white font-semibold text-sm flex items-center justify-center transition">
+            Vitrinas y Mayoreo B2B
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5">
+        <div class="bg-[#111827] border border-slate-800 rounded-2xl p-6 space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Garantía de Compra Oficial</span>
+            <span class="px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-400 text-xs font-bold">Checkout Seguro</span>
+          </div>
+          <ul class="space-y-3 text-sm text-slate-300">
+            <li class="flex items-start gap-3">
+              <span class="text-emerald-400 font-bold">✓</span>
+              <span><strong>Precios Oficiales de Lista:</strong> Cristalería Pyrex, Bongs y Conos sin sobreprecios.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-amber-400 font-bold">⏳</span>
+              <span><strong>Drops en Preventa (2x):</strong> Aparta accesorios seleccionados antes de llegada a tienda.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-emerald-400 font-bold">✓</span>
+              <span><strong>Recolección o Envío:</strong> Entrega inmediata en mostrador Orizaba o envío nacional.</span>
+            </li>
+          </ul>
+          <div class="pt-2">
+            <a href="https://wa.me/522727258748?text=Hola%20The%20Trip%20Orizaba,%20quiero%20consultar%20disponibilidad" target="_blank" rel="noopener" class="w-full h-11 rounded-xl bg-slate-800 hover:bg-slate-700 text-emerald-400 font-semibold text-sm flex items-center justify-center gap-2 transition">
+              Atención Oficial WhatsApp: 272 725 8748
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATÁLOGO INTERACTIVO -->
+  <main id="catalogo" class="max-w-7xl mx-auto px-4 sm:px-6 py-16">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+      <div>
+        <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Catálogo Seleccionado</h2>
+        <p class="text-sm text-slate-400 mt-1">Precios netos en MXN con IVA incluido. Selecciona productos para enviar al checkout.</p>
+      </div>
+
+      <div class="flex flex-wrap gap-2" id="filtrosCategoria">
+        <button data-cat="TODOS" class="filter-btn active px-3.5 py-2 rounded-xl text-xs font-bold bg-emerald-500 text-slate-950 cursor-pointer">Todos</button>
+        <button data-cat="CRISTALERIA" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-[#111827] text-slate-300 border border-slate-800 hover:border-slate-700 cursor-pointer">Cristalería Pyrex & Bongs</button>
+        <button data-cat="CONOS" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-[#111827] text-slate-300 border border-slate-800 hover:border-slate-700 cursor-pointer">Conos & Papel</button>
+        <button data-cat="VAPORIZADORES" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-[#111827] text-slate-300 border border-slate-800 hover:border-slate-700 cursor-pointer">Vaporizadores</button>
+        <button data-cat="ACCESORIOS" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-[#111827] text-slate-300 border border-slate-800 hover:border-slate-700 cursor-pointer">Accesorios (Stock / Preventa)</button>
+      </div>
+    </div>
+
+    <div id="gridProductos" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  </main>
+
+  <!-- SECCIÓN MAYOREO Y VITRINAS B2B -->
+  <section id="mayoreo" class="border-t border-slate-800/80 bg-[#0b1120]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-16 grid lg:grid-cols-12 gap-8 items-center">
+      <div class="lg:col-span-7 space-y-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-amber-400">Programa Aliados Comerciales B2B</span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Instala una Vitrina The Trip en tu Comercio</h2>
+        <p class="text-sm sm:text-base text-slate-400 leading-relaxed">
+          Abastecemos smoke shops, tiendas de conveniencia, hoteles y puntos turísticos en la región de Orizaba y Córdoba con vitrinas de mostrador con cerradura y surtido de alta rotación con márgenes superiores al 50%.
+        </p>
+      </div>
+      <div class="lg:col-span-5 flex flex-col sm:flex-row lg:flex-col gap-3">
+        <a href="https://www.basecamp420.com/aliados?utm_source=thetrip_mx&utm_medium=b2b" class="h-12 px-6 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm flex items-center justify-center transition">
+          Solicitar Convenio Mayorista B2B
+        </a>
+        <a href="https://wa.me/522727258748?text=Hola,%20me%20interesa%20cotizar%20una%20vitrina%20mayorista%20de%20The%20Trip" target="_blank" rel="noopener" class="h-12 px-6 rounded-xl bg-[#111827] hover:bg-slate-800 border border-slate-700 text-white font-semibold text-sm flex items-center justify-center transition">
+          Cotizar Vitrina por WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="ubicacion" class="border-t border-slate-800/80 bg-[#090d16] py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 text-sm text-slate-400">
+      <div>
+        <p class="font-bold text-white">The Trip Smoke Shop • Ecosistema Basecamp 420</p>
+        <p class="mt-1">Oriente 27 y Norte 10, Orizaba, Veracruz, México • Tel: +52 272 725 8748</p>
+      </div>
+      <div class="flex flex-wrap gap-5">
+        <a href="https://www.basecamp420.com/terminos" class="hover:text-white transition">Términos</a>
+        <a href="https://www.basecamp420.com/legal" class="hover:text-white transition">Aviso Legal (+18)</a>
+        <a href="https://www.basecamp420.com/thetrip" class="hover:text-emerald-400 transition">Catálogo Completo en Basecamp 420</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- DRAWER CARRITO -->
+  <div id="cartDrawer" class="fixed inset-0 z-50 hidden">
+    <div onclick="toggleCarrito()" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+    <div class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-[#111827] border-l border-slate-800 p-6 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+          <h3 class="text-lg font-bold text-white">Tu Pedido • The Trip</h3>
+          <button onclick="toggleCarrito()" class="text-slate-400 hover:text-white text-sm font-bold cursor-pointer">Cerrar ✕</button>
+        </div>
+        <div id="cartItems" class="mt-4 space-y-3 max-h-[60vh] overflow-y-auto"></div>
+      </div>
+
+      <div class="border-t border-slate-800 pt-4 space-y-4">
+        <div class="flex items-center justify-between text-base font-bold text-white">
+          <span>Total Estimado (IVA inc.)</span>
+          <span id="cartTotal" class="text-emerald-400 tabular-nums">$0.00 MXN</span>
+        </div>
+        <button onclick="irACheckoutBasecamp()" class="w-full h-12 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm transition cursor-pointer">
+          Finalizar Compra en Checkout Basecamp 420 →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const PRODUCTOS = [
+      { sku: "TT-PYX-001", nombre: "Bong Beaker Pyrex Borosilicato 30cm", categoria: "CRISTALERIA", etiqueta: "Lista Oficial SICAR", badgeColor: "emerald", precio: 680.00, desc: "Vidrio borosilicato de 5mm de grosor con atrapahielos y difusor desmontable." },
+      { sku: "TT-CON-014", nombre: "Caja Conos King Size Raw Classic (50 pzas)", categoria: "CONOS", etiqueta: "Lista Oficial SICAR", badgeColor: "emerald", precio: 420.00, desc: "Display cerrado con 50 conos pre-rolados sin blanquear de combustión lenta." },
+      { sku: "TT-VAP-008", nombre: "Vaporizador Portátil Herba Convección Pro", categoria: "VAPORIZADORES", etiqueta: "Garantía Directa", badgeColor: "emerald", precio: 1850.00, desc: "Cámara cerámica de calentamiento rápido, control grado a grado y carga USB-C." },
+      { sku: "TT-ACC-102", nombre: "Grinder Metálico CNC 4 Piezas 63mm", categoria: "ACCESORIOS", etiqueta: "STOCK FÍSICO • Entrega Hoy", badgeColor: "emerald", precio: 360.00, desc: "Aluminio anodizado grado aeronáutico con malla polinizadora y espátula." },
+      { sku: "TT-ACC-205", nombre: "Charola Edición Especial + Kit Enrolado", categoria: "ACCESORIOS", etiqueta: "⏳ PREVENTA • Precio 2x", badgeColor: "amber", precio: 290.00, desc: "Drop quincenal bajo pedido. Reserva a precio preferencial 2x antes de llegada." },
+      { sku: "TT-PYX-019", nombre: "Pipa Spoon Pyrex Grueso Diseño Nebulosa", categoria: "CRISTALERIA", etiqueta: "Lista Oficial SICAR", badgeColor: "emerald", precio: 220.00, desc: "Cristalería artesanal de alta resistencia térmica, fácil limpieza." }
+    ];
+
+    let carrito = [];
+
+    function confirmarEdad() {
+      localStorage.setItem("thetrip_age_verified_18", "true");
+      document.getElementById("ageGate").classList.add("hidden");
+    }
+
+    if (localStorage.getItem("thetrip_age_verified_18") === "true") {
+      document.getElementById("ageGate").classList.add("hidden");
+    }
+
+    function renderProductos(filtro = "TODOS") {
+      const grid = document.getElementById("gridProductos");
+      const lista = filtro === "TODOS" ? PRODUCTOS : PRODUCTOS.filter(p => p.categoria === filtro);
+      grid.innerHTML = lista.map(p => {
+        const badgeCls = p.badgeColor === "amber"
+          ? "bg-amber-500/10 border-amber-500/30 text-amber-400"
+          : "bg-emerald-500/10 border-emerald-500/30 text-emerald-400";
+        return `
+          <article class="bg-[#111827] border border-slate-800/90 rounded-2xl p-6 flex flex-col justify-between hover:border-slate-700 transition">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="text-[11px] font-mono text-slate-500">${p.sku}</span>
+                <span class="px-2.5 py-0.5 rounded-lg border text-[11px] font-bold ${badgeCls}">${p.etiqueta}</span>
+              </div>
+              <h3 class="text-lg font-bold text-white leading-snug">${p.nombre}</h3>
+              <p class="text-sm text-slate-400 mt-2 leading-relaxed">${p.desc}</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between">
+              <div>
+                <span class="text-[11px] text-slate-500 block">Precio Neto</span>
+                <span class="text-xl font-black text-white tabular-nums">$${p.precio.toFixed(2)}</span>
+              </div>
+              <button onclick="agregarCarrito('${p.sku}')" class="h-10 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs transition cursor-pointer">
+                + Agregar
+              </button>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    document.querySelectorAll(".filter-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".filter-btn").forEach(b => {
+          b.className = "filter-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-[#111827] text-slate-300 border border-slate-800 hover:border-slate-700 cursor-pointer";
+        });
+        btn.className = "filter-btn active px-3.5 py-2 rounded-xl text-xs font-bold bg-emerald-500 text-slate-950 cursor-pointer";
+        renderProductos(btn.dataset.cat);
+      });
+    });
+
+    function agregarCarrito(sku) {
+      const prod = PRODUCTOS.find(p => p.sku === sku);
+      const existente = carrito.find(i => i.sku === sku);
+      if (existente) existente.qty += 1;
+      else carrito.push({ ...prod, qty: 1 });
+      actualizarCarritoUI();
+    }
+
+    function actualizarCarritoUI() {
+      const totalItems = carrito.reduce((acc, i) => acc + i.qty, 0);
+      const totalMonto = carrito.reduce((acc, i) => acc + i.precio * i.qty, 0);
+      document.getElementById("cartCount").textContent = totalItems;
+      document.getElementById("cartTotal").textContent = `$${totalMonto.toFixed(2)} MXN`;
+
+      const container = document.getElementById("cartItems");
+      if (carrito.length === 0) {
+        container.innerHTML = `<p class="text-sm text-slate-400 py-8 text-center">Tu carrito está vacío.</p>`;
+        return;
+      }
+      container.innerHTML = carrito.map((item, idx) => `
+        <div class="bg-[#0b1120] border border-slate-800 rounded-xl p-3 flex items-center justify-between gap-3">
+          <div>
+            <p class="text-sm font-semibold text-white">${item.nombre}</p>
+            <p class="text-xs text-slate-400 tabular-nums">${item.qty} x $${item.precio.toFixed(2)} MXN</p>
+          </div>
+          <button onclick="eliminarItem(${idx})" class="text-xs text-rose-400 hover:text-rose-300 font-bold cursor-pointer">Quitar</button>
+        </div>
+      `).join("");
+    }
+
+    function eliminarItem(idx) {
+      carrito.splice(idx, 1);
+      actualizarCarritoUI();
+    }
+
+    function toggleCarrito() {
+      document.getElementById("cartDrawer").classList.toggle("hidden");
+    }
+
+    function irACheckoutBasecamp() {
+      if (carrito.length === 0) return;
+      const itemsParam = encodeURIComponent(carrito.map(i => `${i.sku}:${i.qty}`).join(","));
+      window.location.href = `https://www.basecamp420.com/checkout?utm_source=thetrip_mx&utm_medium=storefront&items=${itemsParam}`;
+    }
+
+    renderProductos();
+    actualizarCarritoUI();
+  </script>
+</body>
+</html>

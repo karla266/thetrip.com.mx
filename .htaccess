@@ -1,0 +1,7 @@
+﻿DirectoryIndex index.html
+Options -Indexes
+
+RewriteEngine On
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^thetrip\.com\.mx$ [NC]
+RewriteRule ^(.*)$ https://www.thetrip.com.mx/$1 [L,R=301]

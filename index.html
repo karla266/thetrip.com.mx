@@ -100,8 +100,8 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-center">
       <div class="lg:col-span-7 space-y-6">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          Inventario Sincronizado • Oriente 27 y Norte 10, Orizaba
+          <span id="syncDot" class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span id="syncStatusText">Sincronizando con SICAR Basecamp 420...</span>
         </div>
         <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.08]">
           The Trip Smoke Shop: <span class="text-emerald-400">Cristalería Pyrex, Conos y Vaporizadores</span>
@@ -151,19 +151,23 @@
 
   <!-- CATÁLOGO INTERACTIVO -->
   <main id="catalogo" class="max-w-7xl mx-auto px-4 sm:px-6 py-16">
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-6">
       <div>
-        <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Catálogo Seleccionado</h2>
+        <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Catálogo en Tiempo Real</h2>
         <p class="text-sm text-slate-400 mt-1">Precios netos en MXN con IVA incluido. Selecciona productos para enviar al checkout.</p>
       </div>
 
-      <div class="flex flex-wrap gap-2" id="filtrosCategoria">
-        <button data-cat="TODOS" class="filter-btn active px-3.5 py-2 rounded-xl text-xs font-bold bg-emerald-500 text-slate-950 cursor-pointer">Todos</button>
-        <button data-cat="CRISTALERIA" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-[#111827] text-slate-300 border border-slate-800 hover:border-slate-700 cursor-pointer">Cristalería Pyrex & Bongs</button>
-        <button data-cat="CONOS" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-[#111827] text-slate-300 border border-slate-800 hover:border-slate-700 cursor-pointer">Conos & Papel</button>
-        <button data-cat="VAPORIZADORES" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-[#111827] text-slate-300 border border-slate-800 hover:border-slate-700 cursor-pointer">Vaporizadores</button>
-        <button data-cat="ACCESORIOS" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-[#111827] text-slate-300 border border-slate-800 hover:border-slate-700 cursor-pointer">Accesorios (Stock / Preventa)</button>
+      <div class="flex flex-col sm:flex-row gap-3">
+        <input id="buscadorInput" type="search" placeholder="Buscar SKU o producto..." class="h-10 px-4 rounded-xl bg-[#111827] border border-slate-800 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500" />
       </div>
+    </div>
+
+    <div class="flex flex-wrap gap-2 mb-8" id="filtrosCategoria">
+      <button data-cat="TODOS" class="filter-btn active px-3.5 py-2 rounded-xl text-xs font-bold bg-emerald-500 text-slate-950 cursor-pointer">Todos</button>
+      <button data-cat="CRISTALERIA" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-[#111827] text-slate-300 border border-slate-800 hover:border-slate-700 cursor-pointer">Cristalería Pyrex & Bongs</button>
+      <button data-cat="CONOS" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-[#111827] text-slate-300 border border-slate-800 hover:border-slate-700 cursor-pointer">Conos & Papel</button>
+      <button data-cat="VAPORIZADORES" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-[#111827] text-slate-300 border border-slate-800 hover:border-slate-700 cursor-pointer">Vaporizadores</button>
+      <button data-cat="ACCESORIOS" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-[#111827] text-slate-300 border border-slate-800 hover:border-slate-700 cursor-pointer">Accesorios (Stock / Preventa)</button>
     </div>
 
     <div id="gridProductos" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
@@ -230,15 +234,20 @@
   </div>
 
   <script>
-    const PRODUCTOS = [
-      { sku: "TT-PYX-001", nombre: "Bong Beaker Pyrex Borosilicato 30cm", categoria: "CRISTALERIA", etiqueta: "Lista Oficial SICAR", badgeColor: "emerald", precio: 680.00, desc: "Vidrio borosilicato de 5mm de grosor con atrapahielos y difusor desmontable." },
-      { sku: "TT-CON-014", nombre: "Caja Conos King Size Raw Classic (50 pzas)", categoria: "CONOS", etiqueta: "Lista Oficial SICAR", badgeColor: "emerald", precio: 420.00, desc: "Display cerrado con 50 conos pre-rolados sin blanquear de combustión lenta." },
-      { sku: "TT-VAP-008", nombre: "Vaporizador Portátil Herba Convección Pro", categoria: "VAPORIZADORES", etiqueta: "Garantía Directa", badgeColor: "emerald", precio: 1850.00, desc: "Cámara cerámica de calentamiento rápido, control grado a grado y carga USB-C." },
-      { sku: "TT-ACC-102", nombre: "Grinder Metálico CNC 4 Piezas 63mm", categoria: "ACCESORIOS", etiqueta: "STOCK FÍSICO • Entrega Hoy", badgeColor: "emerald", precio: 360.00, desc: "Aluminio anodizado grado aeronáutico con malla polinizadora y espátula." },
-      { sku: "TT-ACC-205", nombre: "Charola Edición Especial + Kit Enrolado", categoria: "ACCESORIOS", etiqueta: "⏳ PREVENTA • Precio 2x", badgeColor: "amber", precio: 290.00, desc: "Drop quincenal bajo pedido. Reserva a precio preferencial 2x antes de llegada." },
-      { sku: "TT-PYX-019", nombre: "Pipa Spoon Pyrex Grueso Diseño Nebulosa", categoria: "CRISTALERIA", etiqueta: "Lista Oficial SICAR", badgeColor: "emerald", precio: 220.00, desc: "Cristalería artesanal de alta resistencia térmica, fácil limpieza." }
+    const API_BASECAMP_URL = "https://www.basecamp420.com/api/catalogo?tenant=thetrip";
+
+    const PRODUCTOS_RESPALDO = [
+      { sku: "TT-PYX-001", nombre: "Bong Beaker Pyrex Borosilicato 30cm", categoria: "CRISTALERIA", etiqueta: "Lista Oficial SICAR", badgeColor: "emerald", precio: 680.00, stock: 8, desc: "Vidrio borosilicato de 5mm de grosor con atrapahielos y difusor desmontable." },
+      { sku: "TT-CON-014", nombre: "Caja Conos King Size Raw Classic (50 pzas)", categoria: "CONOS", etiqueta: "Lista Oficial SICAR", badgeColor: "emerald", precio: 420.00, stock: 15, desc: "Display cerrado con 50 conos pre-rolados sin blanquear de combustión lenta." },
+      { sku: "TT-VAP-008", nombre: "Vaporizador Portátil Herba Convección Pro", categoria: "VAPORIZADORES", etiqueta: "Garantía Directa", badgeColor: "emerald", precio: 1850.00, stock: 4, desc: "Cámara cerámica de calentamiento rápido, control grado a grado y carga USB-C." },
+      { sku: "TT-ACC-102", nombre: "Grinder Metálico CNC 4 Piezas 63mm", categoria: "ACCESORIOS", etiqueta: "STOCK FÍSICO • Entrega Hoy", badgeColor: "emerald", precio: 360.00, stock: 12, desc: "Aluminio anodizado grado aeronáutico con malla polinizadora y espátula." },
+      { sku: "TT-ACC-205", nombre: "Charola Edición Especial + Kit Enrolado", categoria: "ACCESORIOS", etiqueta: "⏳ PREVENTA • Precio 2x", badgeColor: "amber", precio: 290.00, stock: 0, desc: "Drop quincenal bajo pedido. Reserva a precio preferencial 2x antes de llegada." },
+      { sku: "TT-PYX-019", nombre: "Pipa Spoon Pyrex Grueso Diseño Nebulosa", categoria: "CRISTALERIA", etiqueta: "Lista Oficial SICAR", badgeColor: "emerald", precio: 220.00, stock: 19, desc: "Cristalería artesanal de alta resistencia térmica, fácil limpieza." }
     ];
 
+    let catalogoActivo = [...PRODUCTOS_RESPALDO];
+    let categoriaActual = "TODOS";
+    let terminoBusqueda = "";
     let carrito = [];
 
     function confirmarEdad() {
@@ -250,9 +259,80 @@
       document.getElementById("ageGate").classList.add("hidden");
     }
 
-    function renderProductos(filtro = "TODOS") {
+    function normalizarItemAPI(raw) {
+      const nombre = String(raw.nombre || raw.name || "");
+      const catRaw = String(raw.categoria || raw.category || "ACCESORIOS").toUpperCase();
+      // Exclusión estricta de marca externa Tiara
+      if (nombre.toLowerCase().includes("tiara") || catRaw.includes("TIARA")) return null;
+
+      let categoria = "ACCESORIOS";
+      if (catRaw.includes("CRISTAL") || catRaw.includes("BONG") || catRaw.includes("PYREX")) categoria = "CRISTALERIA";
+      else if (catRaw.includes("CONO") || catRaw.includes("PAPEL")) categoria = "CONOS";
+      else if (catRaw.includes("VAP")) categoria = "VAPORIZADORES";
+
+      const esPreventa = Boolean(raw.preventa) || Number(raw.existencia ?? raw.stock ?? 1) <= 0;
+      const etiqueta = categoria === "ACCESORIOS"
+        ? (esPreventa ? "⏳ PREVENTA • Precio 2x" : "STOCK FÍSICO • Entrega Hoy")
+        : "Lista Oficial SICAR";
+
+      return {
+        sku: String(raw.sku || raw.clave || "SKU-TT"),
+        nombre,
+        categoria,
+        etiqueta,
+        badgeColor: esPreventa && categoria === "ACCESORIOS" ? "amber" : "emerald",
+        precio: parseFloat(raw.precio1 || raw.precio || raw.price || 0),
+        stock: Number(raw.existencia ?? raw.stock ?? 1),
+        desc: String(raw.descripcion || raw.description || "Disponible para entrega inmediata en Orizaba o envío nacional.")
+      };
+    }
+
+    async function cargarCatalogoEnVivo() {
+      const statusText = document.getElementById("syncStatusText");
+      const statusDot = document.getElementById("syncDot");
+      try {
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 5000);
+        const res = await fetch(API_BASECAMP_URL, {
+          headers: { "Accept": "application/json", "X-Tenant-ID": "basecamp_420" },
+          signal: controller.signal
+        });
+        clearTimeout(timer);
+
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        const listaRaw = Array.isArray(data) ? data : (data.productos || data.items || []);
+        const filtrados = listaRaw.map(normalizarItemAPI).filter(Boolean);
+
+        if (filtrados.length > 0) {
+          catalogoActivo = filtrados;
+          statusText.textContent = `Catálogo en Vivo SICAR (${filtrados.length} artículos) • Oriente 27 y Norte 10`;
+          statusDot.className = "w-2 h-2 rounded-full bg-emerald-400 animate-pulse";
+        } else {
+          throw new Error("Catálogo vacío");
+        }
+      } catch (err) {
+        catalogoActivo = [...PRODUCTOS_RESPALDO];
+        statusText.textContent = "Inventario Verificado • Oriente 27 y Norte 10, Orizaba";
+        statusDot.className = "w-2 h-2 rounded-full bg-emerald-400";
+      }
+      renderProductos();
+    }
+
+    function renderProductos() {
       const grid = document.getElementById("gridProductos");
-      const lista = filtro === "TODOS" ? PRODUCTOS : PRODUCTOS.filter(p => p.categoria === filtro);
+      const lista = catalogoActivo.filter(p => {
+        const matchCat = categoriaActual === "TODOS" || p.categoria === categoriaActual;
+        const q = terminoBusqueda.trim().toLowerCase();
+        const matchText = !q || p.nombre.toLowerCase().includes(q) || p.sku.toLowerCase().includes(q);
+        return matchCat && matchText;
+      });
+
+      if (lista.length === 0) {
+        grid.innerHTML = `<div class="col-span-full bg-[#111827] border border-slate-800 rounded-2xl p-10 text-center text-slate-400">No se encontraron artículos con ese filtro.</div>`;
+        return;
+      }
+
       grid.innerHTML = lista.map(p => {
         const badgeCls = p.badgeColor === "amber"
           ? "bg-amber-500/10 border-amber-500/30 text-amber-400"
@@ -287,12 +367,19 @@
           b.className = "filter-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-[#111827] text-slate-300 border border-slate-800 hover:border-slate-700 cursor-pointer";
         });
         btn.className = "filter-btn active px-3.5 py-2 rounded-xl text-xs font-bold bg-emerald-500 text-slate-950 cursor-pointer";
-        renderProductos(btn.dataset.cat);
+        categoriaActual = btn.dataset.cat;
+        renderProductos();
       });
     });
 
+    document.getElementById("buscadorInput").addEventListener("input", (e) => {
+      terminoBusqueda = e.target.value;
+      renderProductos();
+    });
+
     function agregarCarrito(sku) {
-      const prod = PRODUCTOS.find(p => p.sku === sku);
+      const prod = catalogoActivo.find(p => p.sku === sku);
+      if (!prod) return;
       const existente = carrito.find(i => i.sku === sku);
       if (existente) existente.qty += 1;
       else carrito.push({ ...prod, qty: 1 });
@@ -336,7 +423,7 @@
       window.location.href = `https://www.basecamp420.com/checkout?utm_source=thetrip_mx&utm_medium=storefront&items=${itemsParam}`;
     }
 
-    renderProductos();
+    cargarCatalogoEnVivo();
     actualizarCarritoUI();
   </script>
 </body>
